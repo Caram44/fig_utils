@@ -6,8 +6,8 @@ import numpy as np
 class Time_series_fig:
 
     def __init__(self, figsize=(12, 6), ylabel='', xlabel='',
-                 xticks=None, yticks=None,
-                 xticklabels=None, yticklabels=None,
+                 xticks=True, yticks=True,
+                 xticklabels=True, yticklabels=True,
                  xlim=None, ylim=None, title='', name='',
                  style='seaborn-colorblind', fontsize=16):
 
@@ -21,6 +21,10 @@ class Time_series_fig:
         ax.grid(axis='y')
         if xticks is None:
             xticks = []
+        if xticks is True:
+            xticks = ax.get_xticks()
+        if yticks is True:
+            yticks = ax.get_yticks()
         if yticks is None:
             yticks = []
         if xticklabels is None:
@@ -45,5 +49,7 @@ class Time_series_fig:
         ax.set_yticks(yticks)
         ax.set_xticklabels(xticklabels)
         ax.set_yticklabels(yticklabels)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
         self.fig = fig
         self.ax = ax
